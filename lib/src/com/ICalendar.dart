@@ -100,6 +100,35 @@ class ICalendar extends IInspectable {
         ptr.ref.lpVtbl,
       );
 
+  Pointer<COMObject> get Languages {
+    final retValuePtr = calloc<Pointer<COMObject>>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+            Pointer,
+            Pointer<Pointer<COMObject>>,
+          )>>>()
+          .value
+          .asFunction<
+              int Function(
+            Pointer,
+            Pointer<Pointer<COMObject>>,
+          )>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
   String get NumeralSystem {
     final retValuePtr = calloc<HSTRING>();
 

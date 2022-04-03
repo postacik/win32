@@ -96,6 +96,9 @@ const comInterfacesToGenerate = <String>[
 ];
 
 final windowsRuntimeTypesToGenerate = [
+  // 'Windows.Foundation.Collections.IIterable`1',
+  // 'Windows.Foundation.Collections.IIterator`1',
+  // 'Windows.Foundation.Collections.IVectorView`1',
   // 'Windows.Foundation.IAsyncAction',
   'Windows.Foundation.IAsyncInfo',
   // 'Windows.Foundation.IAsyncOperation`1',
