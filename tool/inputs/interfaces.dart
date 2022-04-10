@@ -100,7 +100,7 @@ const comInterfacesToGenerate = <String>[
 final windowsRuntimeTypesToGenerate = [
   // 'Windows.Foundation.Collections.IIterable`1',
   // 'Windows.Foundation.Collections.IIterator`1',
-  // 'Windows.Foundation.Collections.IVectorView`1',
+  'Windows.Foundation.Collections.IVectorView`1',
   // 'Windows.Foundation.IAsyncAction',
   'Windows.Foundation.IAsyncInfo',
   // 'Windows.Foundation.IAsyncOperation`1',
@@ -108,7 +108,7 @@ final windowsRuntimeTypesToGenerate = [
   // 'Windows.Foundation.IPropertyValue',
   'Windows.Foundation.IStringable',
   // 'Windows.Gaming.Input.IGamepadStatics',
-  'Windows.Globalization.ICalendar',
+  // 'Windows.Globalization.ICalendar',
   // 'Windows.Storage.IUserDataPathsStatics',
   // 'Windows.Storage.Pickers.IFileOpenPicker',
   // 'Windows.UI.Notifications.IToastNotificationFactory',

@@ -4,13 +4,24 @@
 
 // Scratch file for testing various ideas.
 
+// ignore_for_file: unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final sh = calloc<SHITEMID>();
-  sh.ref.cb = 0x0102;
-  print(sh.ref.cb == 0x0102);
+  winrtInitialize();
+
+  final object = CreateObject('Windows.Globalization.Calendar', IID_ICalendar);
+  final calendar = ICalendar(object);
+
+  final languages = calendar.Languages; // IVectorView
+
+  final iterable = IVectorView(languages);
+  print(iterable.Size);
+
+  winrtUninitialize();
+  print('all done');
 }

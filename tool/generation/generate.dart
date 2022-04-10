@@ -12,25 +12,25 @@ import 'generate_win32_tests.dart';
 import 'generate_winrt_apis.dart';
 
 void main() {
-  final functionsToGenerate = loadFunctionsFromJson();
+  // final functionsToGenerate = loadFunctionsFromJson();
 
-  print('Generating struct_sizes.cpp...');
-  generateStructSizeAnalyzer();
+  // print('Generating struct_sizes.cpp...');
+  // generateStructSizeAnalyzer();
 
-  print('Generating structs...');
-  generateStructs(structsToGenerate);
+  // print('Generating structs...');
+  // generateStructs(structsToGenerate);
 
-  print('Generating struct tests...');
-  generateStructSizeTests();
+  // print('Generating struct tests...');
+  // generateStructSizeTests();
 
-  print('Generating FFI function bindings...');
-  generateFunctions(functionsToGenerate);
+  // print('Generating FFI function bindings...');
+  // generateFunctions(functionsToGenerate);
 
-  print('Generating FFI function tests...');
-  generateFunctionTests(functionsToGenerate);
+  // print('Generating FFI function tests...');
+  // generateFunctionTests(functionsToGenerate);
 
-  print('Generating COM interfaces and tests...');
-  generateComApis();
+  // print('Generating COM interfaces and tests...');
+  // generateComApis();
 
   print('Generating Windows Runtime interfaces...');
   generateWinRTApis();

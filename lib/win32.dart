@@ -269,3 +269,7 @@ export 'src/com/IWbemLocator.dart';
 export 'src/com/IWbemServices.dart';
 export 'src/com/ToastNotification.dart';
 export 'src/com/UserDataPaths.dart';
+
+export 'src/com/IIterable`1.dart';
+export 'src/com/IIterator`1.dart';
+export 'src/com/IVectorView`1.dart';

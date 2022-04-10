@@ -21,12 +21,21 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
   @override
   String get interfaceImport {
-    if (typeDef.interfaces.isEmpty) {
-      // Inherits from IInspectable, which is a traditional COM type.
-      return 'IInspectable.dart';
-    } else {
-      return getImportForTypeDef(typeDef.interfaces.first);
+    if (typeDef.interfaces.isNotEmpty) {
+      // Is it a generic (e.g. IVectorView<T>)? If so, get the generic
+      final firstInterface = typeDef.interfaces.first;
+      if (firstInterface.typeSpec?.baseType == BaseType.GenericTypeModifier) {
+        final genericType = firstInterface.typeSpec!.type;
+        if (genericType != null) {
+          return getImportForTypeDef(genericType);
+        }
+      } else {
+        return getImportForTypeDef(typeDef.interfaces.first);
+      }
     }
+
+    // Inherits from IInspectable, which is a traditional COM type.
+    return 'IInspectable.dart';
   }
 
   @override
