@@ -208,35 +208,17 @@ void main() {
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
     final projection = WinRTInterfaceProjection(winTypeDef!);
-    final cloneProjection =
+    final numDaysProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'Clone');
 
     expect(
-        cloneProjection.nativePrototype,
+        numDaysProjection.nativePrototype,
         equalsIgnoringWhitespace(
             'HRESULT Function(Pointer, Pointer<COMObject>, )'));
     expect(
-        cloneProjection.dartPrototype,
+        numDaysProjection.dartPrototype,
         equalsIgnoringWhitespace(
             'int Function(Pointer, Pointer<COMObject>, )'));
-  });
-
-  test('WinRT TryCreate method successfully projects Pointer<COMObject>', () {
-    final winTypeDef = MetadataStore.getMetadataForType(
-        'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics');
-
-    final projection = WinRTInterfaceProjection(winTypeDef!);
-    final tryCreateProjection =
-        projection.methodProjections.firstWhere((m) => m.name == 'TryCreate');
-
-    expect(
-        tryCreateProjection.nativePrototype,
-        equalsIgnoringWhitespace(
-            'HRESULT Function(Pointer, IntPtr regionCode, Pointer<COMObject> phoneNumber, )'));
-    expect(
-        tryCreateProjection.dartPrototype,
-        equalsIgnoringWhitespace(
-            'int Function(Pointer, int regionCode, Pointer<COMObject> phoneNumber, )'));
   });
 
   test('WinRT set property successfully projects something', () {

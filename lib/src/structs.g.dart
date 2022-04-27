@@ -3736,7 +3736,7 @@ class MOUSEINPUT extends Struct {
   @Int32()
   external int dy;
 
-  @Int32()
+  @Uint32()
   external int mouseData;
 
   @Uint32()
@@ -3805,18 +3805,6 @@ class MSLLHOOKSTRUCT extends Struct {
 
   @IntPtr()
   external int dwExtraInfo;
-}
-
-/// Contains information that an application can use while processing the
-/// WM_NCCALCSIZE message to calculate the size, position, and valid
-/// contents of the client area of a window.
-///
-/// {@category Struct}
-class NCCALCSIZE_PARAMS extends Struct {
-  @Array(3)
-  external Array<RECT> rgrc;
-
-  external Pointer<WINDOWPOS> lppos;
 }
 
 /// The NDIS_OBJECT_HEADER structure packages the object type, version, and
@@ -6899,32 +6887,6 @@ class WINDOWPLACEMENT extends Struct {
   external POINT ptMaxPosition;
 
   external RECT rcNormalPosition;
-}
-
-/// Contains information about the size and position of a window.
-///
-/// {@category Struct}
-class WINDOWPOS extends Struct {
-  @IntPtr()
-  external int hwnd;
-
-  @IntPtr()
-  external int hwndInsertAfter;
-
-  @Int32()
-  external int x;
-
-  @Int32()
-  external int y;
-
-  @Int32()
-  external int cx;
-
-  @Int32()
-  external int cy;
-
-  @Uint32()
-  external int flags;
 }
 
 /// The WLAN_ASSOCIATION_ATTRIBUTES structure contains association

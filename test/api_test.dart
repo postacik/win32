@@ -1066,7 +1066,8 @@ void main() {
       test('Can instantiate send', () {
         final ws2_32 = DynamicLibrary.open('ws2_32.dll');
         final send = ws2_32.lookupFunction<
-            Int32 Function(IntPtr s, Pointer<Utf8> buf, Int32 len, Int32 flags),
+            Int32 Function(
+                IntPtr s, Pointer<Utf8> buf, Int32 len, Uint32 flags),
             int Function(int s, Pointer<Utf8> buf, int len, int flags)>('send');
         expect(send, isA<Function>());
       });
@@ -8164,29 +8165,6 @@ void main() {
               Pointer<RECT> pClipRect)>('DrawThemeBackground');
       expect(DrawThemeBackground, isA<Function>());
     });
-    test('Can instantiate DrawThemeEdge', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final DrawThemeEdge = uxtheme.lookupFunction<
-          Int32 Function(
-              IntPtr hTheme,
-              IntPtr hdc,
-              Int32 iPartId,
-              Int32 iStateId,
-              Pointer<RECT> pDestRect,
-              Uint32 uEdge,
-              Uint32 uFlags,
-              Pointer<RECT> pContentRect),
-          int Function(
-              int hTheme,
-              int hdc,
-              int iPartId,
-              int iStateId,
-              Pointer<RECT> pDestRect,
-              int uEdge,
-              int uFlags,
-              Pointer<RECT> pContentRect)>('DrawThemeEdge');
-      expect(DrawThemeEdge, isA<Function>());
-    });
     test('Can instantiate DrawThemeIcon', () {
       final uxtheme = DynamicLibrary.open('uxtheme.dll');
       final DrawThemeIcon = uxtheme.lookupFunction<
@@ -8201,48 +8179,6 @@ void main() {
           int Function(int hTheme, int hdc, int iPartId, int iStateId,
               Pointer<RECT> pRect, int himl, int iImageIndex)>('DrawThemeIcon');
       expect(DrawThemeIcon, isA<Function>());
-    });
-    test('Can instantiate DrawThemeParentBackground', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final DrawThemeParentBackground = uxtheme.lookupFunction<
-          Int32 Function(IntPtr hwnd, IntPtr hdc, Pointer<RECT> prc),
-          int Function(int hwnd, int hdc,
-              Pointer<RECT> prc)>('DrawThemeParentBackground');
-      expect(DrawThemeParentBackground, isA<Function>());
-    });
-    test('Can instantiate DrawThemeParentBackgroundEx', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final DrawThemeParentBackgroundEx = uxtheme.lookupFunction<
-          Int32 Function(
-              IntPtr hwnd, IntPtr hdc, Uint32 dwFlags, Pointer<RECT> prc),
-          int Function(int hwnd, int hdc, int dwFlags,
-              Pointer<RECT> prc)>('DrawThemeParentBackgroundEx');
-      expect(DrawThemeParentBackgroundEx, isA<Function>());
-    });
-    test('Can instantiate DrawThemeTextEx', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final DrawThemeTextEx = uxtheme.lookupFunction<
-          Int32 Function(
-              IntPtr hTheme,
-              IntPtr hdc,
-              Int32 iPartId,
-              Int32 iStateId,
-              Pointer<Utf16> pszText,
-              Int32 cchText,
-              Uint32 dwTextFlags,
-              Pointer<RECT> pRect,
-              Pointer<DTTOPTS> pOptions),
-          int Function(
-              int hTheme,
-              int hdc,
-              int iPartId,
-              int iStateId,
-              Pointer<Utf16> pszText,
-              int cchText,
-              int dwTextFlags,
-              Pointer<RECT> pRect,
-              Pointer<DTTOPTS> pOptions)>('DrawThemeTextEx');
-      expect(DrawThemeTextEx, isA<Function>());
     });
     test('Can instantiate EnableThemeDialogTexture', () {
       final uxtheme = DynamicLibrary.open('uxtheme.dll');
@@ -8278,27 +8214,6 @@ void main() {
           int Function(int hTheme, int hdc, int iPartId, int iStateId,
               int iPropId, Pointer<Int32> piVal)>('GetThemeMetric');
       expect(GetThemeMetric, isA<Function>());
-    });
-    test('Can instantiate GetThemePartSize', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final GetThemePartSize = uxtheme.lookupFunction<
-          Int32 Function(
-              IntPtr hTheme,
-              IntPtr hdc,
-              Int32 iPartId,
-              Int32 iStateId,
-              Pointer<RECT> prc,
-              Int32 eSize,
-              Pointer<SIZE> psz),
-          int Function(
-              int hTheme,
-              int hdc,
-              int iPartId,
-              int iStateId,
-              Pointer<RECT> prc,
-              int eSize,
-              Pointer<SIZE> psz)>('GetThemePartSize');
-      expect(GetThemePartSize, isA<Function>());
     });
     test('Can instantiate GetThemeRect', () {
       final uxtheme = DynamicLibrary.open('uxtheme.dll');
@@ -8379,14 +8294,6 @@ void main() {
           int Function(int hwnd)>('IsThemeDialogTextureEnabled');
       expect(IsThemeDialogTextureEnabled, isA<Function>());
     });
-    test('Can instantiate IsThemePartDefined', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final IsThemePartDefined = uxtheme.lookupFunction<
-          Int32 Function(IntPtr hTheme, Int32 iPartId, Int32 iStateId),
-          int Function(
-              int hTheme, int iPartId, int iStateId)>('IsThemePartDefined');
-      expect(IsThemePartDefined, isA<Function>());
-    });
     test('Can instantiate OpenThemeData', () {
       final uxtheme = DynamicLibrary.open('uxtheme.dll');
       final OpenThemeData = uxtheme.lookupFunction<
@@ -8414,13 +8321,6 @@ void main() {
         expect(OpenThemeDataForDpi, isA<Function>());
       });
     }
-    test('Can instantiate SetThemeAppProperties', () {
-      final uxtheme = DynamicLibrary.open('uxtheme.dll');
-      final SetThemeAppProperties = uxtheme.lookupFunction<
-          Void Function(Uint32 dwFlags),
-          void Function(int dwFlags)>('SetThemeAppProperties');
-      expect(SetThemeAppProperties, isA<Function>());
-    });
     test('Can instantiate SetWindowTheme', () {
       final uxtheme = DynamicLibrary.open('uxtheme.dll');
       final SetWindowTheme = uxtheme.lookupFunction<
@@ -10230,27 +10130,23 @@ void main() {
               int hwnd, Pointer<MAGCOLOREFFECT> pEffect)>('MagGetColorEffect');
       expect(MagGetColorEffect, isA<Function>());
     });
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagGetFullscreenColorEffect', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagGetFullscreenColorEffect = magnification.lookupFunction<
-                Int32 Function(Pointer<MAGCOLOREFFECT> pEffect),
-                int Function(Pointer<MAGCOLOREFFECT> pEffect)>(
-            'MagGetFullscreenColorEffect');
-        expect(MagGetFullscreenColorEffect, isA<Function>());
-      });
-    }
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagGetFullscreenTransform', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagGetFullscreenTransform = magnification.lookupFunction<
-            Int32 Function(Pointer<Float> pMagLevel, Pointer<Int32> pxOffset,
-                Pointer<Int32> pyOffset),
-            int Function(Pointer<Float> pMagLevel, Pointer<Int32> pxOffset,
-                Pointer<Int32> pyOffset)>('MagGetFullscreenTransform');
-        expect(MagGetFullscreenTransform, isA<Function>());
-      });
-    }
+    test('Can instantiate MagGetFullscreenColorEffect', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagGetFullscreenColorEffect = magnification.lookupFunction<
+          Int32 Function(Pointer<MAGCOLOREFFECT> pEffect),
+          int Function(
+              Pointer<MAGCOLOREFFECT> pEffect)>('MagGetFullscreenColorEffect');
+      expect(MagGetFullscreenColorEffect, isA<Function>());
+    });
+    test('Can instantiate MagGetFullscreenTransform', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagGetFullscreenTransform = magnification.lookupFunction<
+          Int32 Function(Pointer<Float> pMagLevel, Pointer<Int32> pxOffset,
+              Pointer<Int32> pyOffset),
+          int Function(Pointer<Float> pMagLevel, Pointer<Int32> pxOffset,
+              Pointer<Int32> pyOffset)>('MagGetFullscreenTransform');
+      expect(MagGetFullscreenTransform, isA<Function>());
+    });
     test('Can instantiate MagGetImageScalingCallback', () {
       final magnification = DynamicLibrary.open('magnification.dll');
       final MagGetImageScalingCallback = magnification.lookupFunction<
@@ -10260,17 +10156,15 @@ void main() {
               int hwnd)>('MagGetImageScalingCallback');
       expect(MagGetImageScalingCallback, isA<Function>());
     });
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagGetInputTransform', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagGetInputTransform = magnification.lookupFunction<
-            Int32 Function(Pointer<Int32> pfEnabled, Pointer<RECT> pRectSource,
-                Pointer<RECT> pRectDest),
-            int Function(Pointer<Int32> pfEnabled, Pointer<RECT> pRectSource,
-                Pointer<RECT> pRectDest)>('MagGetInputTransform');
-        expect(MagGetInputTransform, isA<Function>());
-      });
-    }
+    test('Can instantiate MagGetInputTransform', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagGetInputTransform = magnification.lookupFunction<
+          Int32 Function(Pointer<Int32> pfEnabled, Pointer<RECT> pRectSource,
+              Pointer<RECT> pRectDest),
+          int Function(Pointer<Int32> pfEnabled, Pointer<RECT> pRectSource,
+              Pointer<RECT> pRectDest)>('MagGetInputTransform');
+      expect(MagGetInputTransform, isA<Function>());
+    });
     test('Can instantiate MagGetWindowFilterList', () {
       final magnification = DynamicLibrary.open('magnification.dll');
       final MagGetWindowFilterList = magnification.lookupFunction<
@@ -10309,26 +10203,22 @@ void main() {
               int hwnd, Pointer<MAGCOLOREFFECT> pEffect)>('MagSetColorEffect');
       expect(MagSetColorEffect, isA<Function>());
     });
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagSetFullscreenColorEffect', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagSetFullscreenColorEffect = magnification.lookupFunction<
-                Int32 Function(Pointer<MAGCOLOREFFECT> pEffect),
-                int Function(Pointer<MAGCOLOREFFECT> pEffect)>(
-            'MagSetFullscreenColorEffect');
-        expect(MagSetFullscreenColorEffect, isA<Function>());
-      });
-    }
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagSetFullscreenTransform', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagSetFullscreenTransform = magnification.lookupFunction<
-            Int32 Function(Float magLevel, Int32 xOffset, Int32 yOffset),
-            int Function(double magLevel, int xOffset,
-                int yOffset)>('MagSetFullscreenTransform');
-        expect(MagSetFullscreenTransform, isA<Function>());
-      });
-    }
+    test('Can instantiate MagSetFullscreenColorEffect', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagSetFullscreenColorEffect = magnification.lookupFunction<
+          Int32 Function(Pointer<MAGCOLOREFFECT> pEffect),
+          int Function(
+              Pointer<MAGCOLOREFFECT> pEffect)>('MagSetFullscreenColorEffect');
+      expect(MagSetFullscreenColorEffect, isA<Function>());
+    });
+    test('Can instantiate MagSetFullscreenTransform', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagSetFullscreenTransform = magnification.lookupFunction<
+          Int32 Function(Float magLevel, Int32 xOffset, Int32 yOffset),
+          int Function(double magLevel, int xOffset,
+              int yOffset)>('MagSetFullscreenTransform');
+      expect(MagSetFullscreenTransform, isA<Function>());
+    });
     test('Can instantiate MagSetImageScalingCallback', () {
       final magnification = DynamicLibrary.open('magnification.dll');
       final MagSetImageScalingCallback = magnification.lookupFunction<
@@ -10339,17 +10229,15 @@ void main() {
           'MagSetImageScalingCallback');
       expect(MagSetImageScalingCallback, isA<Function>());
     });
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagSetInputTransform', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagSetInputTransform = magnification.lookupFunction<
-            Int32 Function(Int32 fEnabled, Pointer<RECT> pRectSource,
-                Pointer<RECT> pRectDest),
-            int Function(int fEnabled, Pointer<RECT> pRectSource,
-                Pointer<RECT> pRectDest)>('MagSetInputTransform');
-        expect(MagSetInputTransform, isA<Function>());
-      });
-    }
+    test('Can instantiate MagSetInputTransform', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagSetInputTransform = magnification.lookupFunction<
+          Int32 Function(Int32 fEnabled, Pointer<RECT> pRectSource,
+              Pointer<RECT> pRectDest),
+          int Function(int fEnabled, Pointer<RECT> pRectSource,
+              Pointer<RECT> pRectDest)>('MagSetInputTransform');
+      expect(MagSetInputTransform, isA<Function>());
+    });
     test('Can instantiate MagSetWindowFilterList', () {
       final magnification = DynamicLibrary.open('magnification.dll');
       final MagSetWindowFilterList = magnification.lookupFunction<
@@ -10374,15 +10262,13 @@ void main() {
               Pointer<MAGTRANSFORM> pTransform)>('MagSetWindowTransform');
       expect(MagSetWindowTransform, isA<Function>());
     });
-    if (windowsBuildNumber >= 9200) {
-      test('Can instantiate MagShowSystemCursor', () {
-        final magnification = DynamicLibrary.open('magnification.dll');
-        final MagShowSystemCursor = magnification.lookupFunction<
-            Int32 Function(Int32 fShowCursor),
-            int Function(int fShowCursor)>('MagShowSystemCursor');
-        expect(MagShowSystemCursor, isA<Function>());
-      });
-    }
+    test('Can instantiate MagShowSystemCursor', () {
+      final magnification = DynamicLibrary.open('magnification.dll');
+      final MagShowSystemCursor = magnification.lookupFunction<
+          Int32 Function(Int32 fShowCursor),
+          int Function(int fShowCursor)>('MagShowSystemCursor');
+      expect(MagShowSystemCursor, isA<Function>());
+    });
     test('Can instantiate MagUninitialize', () {
       final magnification = DynamicLibrary.open('magnification.dll');
       final MagUninitialize = magnification
