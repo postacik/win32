@@ -85,6 +85,9 @@ class TypeProjection {
 
   bool get isEnumType => typeIdentifier.type?.parent?.name == 'System.Enum';
 
+  bool get isReferenceType =>
+      typeIdentifier.baseType == BaseType.ReferenceTypeModifier;
+
   bool get isWrappedValueType =>
       typeIdentifier.baseType == BaseType.ValueTypeModifier;
 
@@ -243,6 +246,7 @@ class TypeProjection {
     }
 
     if (isInterface ||
+        isReferenceType ||
         typeIdentifier.baseType == BaseType.ClassTypeModifier ||
         typeIdentifier.baseType == BaseType.Object) {
       return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');

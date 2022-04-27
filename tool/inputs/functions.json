@@ -1238,10 +1238,30 @@
         "dllLibrary": "uxtheme",
         "comment": "Draws the border and fill defined by the visual style for the specified control part."
     },
+    "DrawThemeEdge": {
+        "prototype": "HRESULT DrawThemeEdge(\n  HTHEME  hTheme,\n  HDC     hdc,\n  int     iPartId,\n  int     iStateId,\n  LPCRECT pDestRect,\n  UINT    uEdge,\n  UINT    uFlags,\n  LPRECT  pContentRect\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Draws one or more edges defined by the visual style of a rectangle."
+    },
     "DrawThemeIcon": {
         "prototype": "HRESULT DrawThemeIcon(\n  HTHEME     hTheme,\n  HDC        hdc,\n  int        iPartId,\n  int        iStateId,\n  LPCRECT    pRect,\n  HIMAGELIST himl,\n  int        iImageIndex\n);",
         "dllLibrary": "uxtheme",
         "comment": "Draws an image from an image list with the icon effect defined by the visual style."
+    },
+    "DrawThemeParentBackground": {
+        "prototype": "HRESULT DrawThemeParentBackground(\n  HWND       hwnd,\n  HDC        hdc,\n  const RECT *prc\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Draws the part of a parent control that is covered by a partially-transparent or alpha-blended child control."
+    },
+    "DrawThemeParentBackgroundEx": {
+        "prototype": "HRESULT DrawThemeParentBackgroundEx(\n  HWND       hwnd,\n  HDC        hdc,\n  DWORD      dwFlags,\n  const RECT *prc\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Used by partially-transparent or alpha-blended child controls to draw the part of their parent in front of which they appear. Sends a WM_ERASEBKGND message followed by a WM_PRINTCLIENT."
+    },
+    "DrawThemeTextEx": {
+        "prototype": "HRESULT DrawThemeTextEx(\n  HTHEME        hTheme,\n  HDC           hdc,\n  int           iPartId,\n  int           iStateId,\n  LPCWSTR       pszText,\n  int           cchText,\n  DWORD         dwTextFlags,\n  LPRECT        pRect,\n  const DTTOPTS *pOptions\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Draws text using the color and font defined by the visual style."
     },
     "DuplicateHandle": {
         "prototype": "BOOL DuplicateHandle(\n  HANDLE   hSourceProcessHandle,\n  HANDLE   hSourceHandle,\n  HANDLE   hTargetProcessHandle,\n  LPHANDLE lpTargetHandle,\n  DWORD    dwDesiredAccess,\n  BOOL     bInheritHandle,\n  DWORD    dwOptions\n);",
@@ -2852,6 +2872,11 @@
         "dllLibrary": "uxtheme",
         "comment": "Retrieves the value of a metric property."
     },
+    "GetThemePartSize": {
+        "prototype": "HRESULT GetThemePartSize(\n  HTHEME    hTheme,\n  HDC       hdc,\n  int       iPartId,\n  int       iStateId,\n  LPCRECT   prc,\n  THEMESIZE eSize,\n  SIZE      *psz\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Calculates the original size of the part defined by a visual style."
+    },
     "GetThemeRect": {
         "prototype": "HRESULT GetThemeRect(\n  HTHEME hTheme,\n  int    iPartId,\n  int    iStateId,\n  int    iPropId,\n  LPRECT pRect\n);",
         "dllLibrary": "uxtheme",
@@ -3368,6 +3393,11 @@
         "dllLibrary": "uxtheme",
         "comment": "Reports whether a specified dialog window supports background texturing."
     },
+    "IsThemePartDefined": {
+        "prototype": "BOOL IsThemePartDefined(\n  HTHEME hTheme,\n  int    iPartId,\n  int    iStateId\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Retrieves whether a visual style has defined parameters for the specified part and state."
+    },
     "IsTouchWindow": {
         "prototype": "BOOL IsTouchWindow(\n  HWND   hwnd,\n  PULONG pulFlags\n);",
         "dllLibrary": "user32",
@@ -3551,12 +3581,14 @@
     "MagGetFullscreenColorEffect": {
         "prototype": "BOOL MagGetFullscreenColorEffect(\n  PMAGCOLOREFFECT pEffect\n);",
         "dllLibrary": "magnification",
-        "comment": "Retrieves the color transformation matrix associated with the full-screen magnifier."
+        "comment": "Retrieves the color transformation matrix associated with the full-screen magnifier.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagGetFullscreenTransform": {
         "prototype": "BOOL MagGetFullscreenTransform(\n  float *pMagLevel,\n  int   *pxOffset,\n  int   *pyOffset\n);",
         "dllLibrary": "magnification",
-        "comment": "Retrieves the magnification settings for the full-screen magnifier."
+        "comment": "Retrieves the magnification settings for the full-screen magnifier.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagGetImageScalingCallback": {
         "prototype": "MagImageScalingCallback MagGetImageScalingCallback(\n  HWND hwnd\n);",
@@ -3566,7 +3598,8 @@
     "MagGetInputTransform": {
         "prototype": "BOOL MagGetInputTransform(\n  BOOL   *pfEnabled,\n  LPRECT pRectSource,\n  LPRECT pRectDest\n);",
         "dllLibrary": "magnification",
-        "comment": "Retrieves the current input transformation for pen and touch input, represented as a source rectangle and a destination rectangle."
+        "comment": "Retrieves the current input transformation for pen and touch input, represented as a source rectangle and a destination rectangle.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagGetWindowFilterList": {
         "prototype": "int MagGetWindowFilterList(\n  HWND  hwnd,\n  DWORD *pdwFilterMode,\n  int   count,\n  HWND  *pHWND\n);",
@@ -3596,12 +3629,14 @@
     "MagSetFullscreenColorEffect": {
         "prototype": "BOOL MagSetFullscreenColorEffect(\n  PMAGCOLOREFFECT pEffect\n);",
         "dllLibrary": "magnification",
-        "comment": "Changes the color transformation matrix associated with the full-screen magnifier."
+        "comment": "Changes the color transformation matrix associated with the full-screen magnifier.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagSetFullscreenTransform": {
         "prototype": "BOOL MagSetFullscreenTransform(\n  float magLevel,\n  int   xOffset,\n  int   yOffset\n);",
         "dllLibrary": "magnification",
-        "comment": "Changes the magnification settings for the full-screen magnifier."
+        "comment": "Changes the magnification settings for the full-screen magnifier.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagSetImageScalingCallback": {
         "prototype": "BOOL MagSetImageScalingCallback(\n  HWND                    hwnd,\n  MagImageScalingCallback callback\n);",
@@ -3611,7 +3646,8 @@
     "MagSetInputTransform": {
         "prototype": "BOOL MagSetInputTransform(\n  BOOL         fEnabled,\n  const LPRECT pRectSource,\n  const LPRECT pRectDest\n);",
         "dllLibrary": "magnification",
-        "comment": "Sets the current active input transformation for pen and touch input, represented as a source rectangle and a destination rectangle."
+        "comment": "Sets the current active input transformation for pen and touch input, represented as a source rectangle and a destination rectangle.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagSetWindowFilterList": {
         "prototype": "BOOL MagSetWindowFilterList(\n  HWND  hwnd,\n  DWORD dwFilterMode,\n  int   count,\n  HWND  *pHWND\n);",
@@ -3631,7 +3667,8 @@
     "MagShowSystemCursor": {
         "prototype": "BOOL MagShowSystemCursor(\n  BOOL fShowCursor\n);",
         "dllLibrary": "magnification",
-        "comment": "Shows or hides the system cursor."
+        "comment": "Shows or hides the system cursor.",
+        "minimumWindowsVersion": "WIN8"
     },
     "MagUninitialize": {
         "prototype": "BOOL MagUninitialize();",
@@ -5359,6 +5396,11 @@
         "prototype": "COLORREF SetTextColor(\n  HDC      hdc,\n  COLORREF color\n);",
         "dllLibrary": "gdi32",
         "comment": "The SetTextColor function sets the text color for the specified device context to the specified color."
+    },
+    "SetThemeAppProperties": {
+        "prototype": "void SetThemeAppProperties(\n  DWORD dwFlags\n);",
+        "dllLibrary": "uxtheme",
+        "comment": "Sets the flags that determine how visual styles are implemented in the calling application."
     },
     "SetThreadAffinityMask": {
         "prototype": "DWORD_PTR SetThreadAffinityMask(\n  HANDLE    hThread,\n  DWORD_PTR dwThreadAffinityMask\n);",
