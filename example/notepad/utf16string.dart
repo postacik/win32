@@ -18,7 +18,7 @@ class Utf16String {
 
   factory Utf16String.fromString(String string) {
     final value = Utf16String(string.length + 1);
-    value.pointer = Utf16.toUtf16(string);
+    value.pointer = TEXT(string);
     value.length = string.length;
 
     return value;

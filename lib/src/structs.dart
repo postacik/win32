@@ -474,6 +474,7 @@ class VARIANT extends Struct {
   external int wReserved3;
 
   // LONGLONG -> __int64 -> Int64
+  // ignore: unnecessary_getters_setters
   int get llVal => _data;
   set llVal(int val) => _data = val;
 
@@ -4776,4 +4777,9 @@ class TPMPARAMS extends Struct {
   external int cbSize;
 
   external RECT rcExclude;
+}
+
+class ASSEMBLYDATA extends Struct {
+  @Uint32()
+  external int toDo;
 }

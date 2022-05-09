@@ -19,7 +19,7 @@ void displayVolumePaths(String volumeName) {
   final charCount = calloc<Uint32>();
   charCount.value = MAX_PATH;
   error = GetVolumePathNamesForVolumeName(
-      Utf16.toUtf16(volumeName), pathNamePtr, charCount.value, charCount);
+      TEXT(volumeName), pathNamePtr, charCount.value, charCount);
 
   if (error != 0) {
     if (charCount.value > 1) {

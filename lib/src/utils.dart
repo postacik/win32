@@ -28,4 +28,4 @@ Pointer<Uint8> convertToANSIString(String str) {
   return pStr;
 }
 
-const TEXT = Utf16.toUtf16;
+Pointer<Utf16> TEXT(String string) => string.toNativeUtf16();
